@@ -14,6 +14,7 @@ set mouse=v  "a  always use mouse n Normal mode
 "a all previous modes
 "r for |hit-enter| and |more-prompt| prompt
 let g:syntastic_check_on_open=1
+let g:pydiction_location = '/home/hakits/.vim/bundle/pydiction/complete-dict'
 
 set smarttab
 set tabstop=4
