@@ -16,6 +16,10 @@ set mouse=v  "a  always use mouse n Normal mode
 let g:syntastic_check_on_open=1
 let g:pydiction_location = '/home/yourname/.vim/bundle/pydiction/complete-dict'
 
+set laststatus=2
+set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
+"显示文件状态
+
 set smarttab
 set tabstop=4
 set shiftwidth=4
