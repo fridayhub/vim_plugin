@@ -4,18 +4,45 @@ endif
 let g:loaded_nerdtree_autoload = 1
 
 function! nerdtree#version()
-    return '4.2.0'
+    return '5.0.0'
 endfunction
 
 " SECTION: General Functions {{{1
 "============================================================
 
 "FUNCTION: nerdtree#checkForBrowse(dir) {{{2
-"inits a secondary nerd tree in the current buffer if appropriate
+"inits a window tree in the current buffer if appropriate
 function! nerdtree#checkForBrowse(dir)
-    if a:dir != '' && isdirectory(a:dir)
-        call g:NERDTreeCreator.CreateSecondary(a:dir)
+    if !isdirectory(a:dir)
+        return
     endif
+
+    if s:reuseWin(a:dir)
+        return
+    endif
+
+    call g:NERDTreeCreator.CreateWindowTree(a:dir)
+endfunction
+
+"FUNCTION: s:reuseWin(dir) {{{2
+"finds a NERDTree buffer with root of dir, and opens it.
+function! s:reuseWin(dir) abort
+    let path = g:NERDTreePath.New(fnamemodify(a:dir, ":p"))
+
+    for i in range(1, bufnr("$"))
+        unlet! nt
+        let nt = getbufvar(i, "NERDTree")
+        if empty(nt)
+            continue
+        endif
+
+        if nt.isWinTree() && nt.root.path.equals(path)
+            exec "buffer " . i
+            return 1
+        endif
+    endfor
+
+    return 0
 endfunction
 
 " FUNCTION: nerdtree#completeBookmarks(A,L,P) {{{2
@@ -36,9 +63,9 @@ endfunction
 
 "FUNCTION: nerdtree#compareNodesBySortKey(n1, n2) {{{2
 function! nerdtree#compareNodesBySortKey(n1, n2)
-    if a:n1.path.getSortKey() < a:n2.path.getSortKey()
+    if a:n1.path.getSortKey() <# a:n2.path.getSortKey()
         return -1
-    elseif a:n1.path.getSortKey() > a:n2.path.getSortKey()
+    elseif a:n1.path.getSortKey() ># a:n2.path.getSortKey()
         return 1
     else
         return 0
@@ -94,7 +121,7 @@ endfunction
 
 " FUNCTION: nerdtree#postSourceActions() {{{2
 function! nerdtree#postSourceActions()
-    call g:NERDTreeBookmark.CacheBookmarks(0)
+    call g:NERDTreeBookmark.CacheBookmarks(1)
     call nerdtree#ui_glue#createDefaultBindings()
 
     "load all nerdtree plugins

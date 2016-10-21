@@ -1,4 +1,20 @@
 execute pathogen#infect()
+" python-mode start
+" Pathogen load
+filetype off
+
+call pathogen#infect()
+call pathogen#helptags()
+let g:pymode = 1
+let g:pymode_options_colorcolumn = 0 "could trun off red line in the middle
+let g:pymode_indent = 1
+let g:pymode_folding = 0  "don't folding function
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K' "Jump to define doc
+let g:pymode_virtualenv = 1   "automatic virtualenv detection 
+let g:pymode_rope_goto_definition_bind = '<C-]>' "ctrl+] go to define
+
+" python-mode end
 syntax on
 filetype plugin indent on
 nmap <F2> :TagbarToggle<CR>         " mapping f2 to TagbarToggle
@@ -14,7 +30,7 @@ set mouse=v  "a  always use mouse n Normal mode
 "a all previous modes
 "r for |hit-enter| and |more-prompt| prompt
 let g:syntastic_check_on_open=1
-let g:pydiction_location = '/home/jinghang/.vim/bundle/pydiction/complete-dict'
+let g:pydiction_location = '/home/hakits/.vim/bundle/pydiction/complete-dict'
 set laststatus=2
 set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
 set smarttab
