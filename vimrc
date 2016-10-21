@@ -12,8 +12,12 @@ let g:pymode_folding = 0  "don't folding function
 let g:pymode_doc = 1
 let g:pymode_doc_bind = 'K' "Jump to define doc
 let g:pymode_virtualenv = 1   "automatic virtualenv detection 
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_completion = 0
+"let g:pymode_rope = 0
+let g:pymode_rope_regenerate_on_write = 0
 let g:pymode_rope_goto_definition_bind = '<C-]>' "ctrl+] go to define
-
+let g:pymode_rope_lookup_project = 0 "fix when input dot freeze
 " python-mode end
 syntax on
 filetype plugin indent on
