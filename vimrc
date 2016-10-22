@@ -16,7 +16,7 @@ let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion = 0
 "let g:pymode_rope = 0
 let g:pymode_rope_regenerate_on_write = 0
-let g:pymode_rope_goto_definition_bind = '<C-]>' "ctrl+] go to define
+let g:pymode_rope_goto_definition_bind = '<C-]>' "ctrl+] go to define  ctrl+o come back
 let g:pymode_rope_lookup_project = 0 "fix when input dot freeze
 " python-mode end
 syntax on
