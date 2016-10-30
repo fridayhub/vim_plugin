@@ -34,9 +34,15 @@ set mouse=v  "a  always use mouse n Normal mode
 "a all previous modes
 "r for |hit-enter| and |more-prompt| prompt
 let g:syntastic_check_on_open=1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 0
 let g:pydiction_location = '/home/hakits/.vim/bundle/pydiction/complete-dict'
 set laststatus=2
 set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set smarttab
 set tabstop=4
 set shiftwidth=4
