@@ -3,6 +3,12 @@ execute pathogen#infect()
 " Pathogen load
 filetype off
 
+set hlsearch
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set fileencoding=gb2312
+set termencoding=utf-8
+
 call pathogen#infect()
 call pathogen#helptags()
 let g:pymode = 1
